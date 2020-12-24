@@ -18,8 +18,15 @@ export class TodoService {
 
   constructor(private http:HttpClient) { }
 
+  // get todos
   getTodos():Observable<Todo[]> {
     return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
+  }
+
+  // delete todos
+  deleteTodo(todo:Todo):Observable<Todo> {
+    const url = `${this.todosUrl}/${todo.id}`
+    return this.http.delete<Todo>(url, httpOptions)
   }
 
   // toggle completed
